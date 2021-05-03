@@ -13,7 +13,7 @@ class _TextScreenState extends State<TextScreen> {
 
   apiCall() async {
     var res = await http.post(
-      Uri.parse("http://9a6b8bea4168.ngrok.io/${_text.text}"),
+      Uri.parse("http://2bef3a83edd8.ngrok.io/${_text.text}"),
     );
     if (res.statusCode == 200) {
       // String summ = res.body.;
@@ -86,7 +86,15 @@ class _TextScreenState extends State<TextScreen> {
           Expanded(
               child: Center(
                   child: Container(
-            child: Text(output),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                output,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
           ))),
           textField(),
         ],

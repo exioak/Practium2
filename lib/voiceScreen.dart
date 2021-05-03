@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:http/http.dart' as http;
@@ -25,7 +27,7 @@ class _VoiceScreenState extends State<VoiceScreen> {
   apiCallVoice() async {
     print(_text);
     var res = await http.post(
-      Uri.parse("https://9a6b8bea4168.ngrok.io/${_text}"),
+      Uri.parse("http://2bef3a83edd8.ngrok.io/${_text}"),
     );
     if (res.statusCode == 200) {
       setState(() {
@@ -46,24 +48,35 @@ class _VoiceScreenState extends State<VoiceScreen> {
         children: [
           Expanded(
               child: Center(
-                  child: Container(
-            child: Text(output),
+                  child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Container(
+              child: Text(
+                output,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ),
           ))),
           Row(children: [
             Container(
-              padding: const EdgeInsets.all(15), //all(15.0),
+              margin: EdgeInsets.fromLTRB(165, 20, 20, 50),
+              padding: const EdgeInsets.all(15.0), //all(15.0),
               decoration:
                   BoxDecoration(color: Colors.black, shape: BoxShape.circle),
               child: InkWell(
                 onTap: () => _listen(),
                 child: Icon(
                   Icons.mic,
+                  size: 35,
                   color: Colors.white,
                 ),
               ),
             ),
-            SizedBox(width: 25),
+            //SizedBox(width: 25),
             Container(
+              margin: EdgeInsets.fromLTRB(35, 20, 0, 2),
               padding: const EdgeInsets.all(15.0),
               decoration:
                   BoxDecoration(color: Colors.black, shape: BoxShape.circle),
